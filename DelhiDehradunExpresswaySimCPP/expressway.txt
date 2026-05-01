@@ -1,0 +1,12 @@
+5 5
+Delhi 0
+Baghpat 1
+Shamli 2
+Saharanpur 3
+Dehradun 4
+
+Delhi Baghpat 47 40 60
+Baghpat Shamli 30 25 40
+Shamli Saharanpur 45 35 60
+Saharanpur Dehradun 70 60 100
+Delhi Saharanpur 170 130 180
