@@ -1,10 +1,15 @@
+# Build files
 build/
 *.exe
-*.obj
+*.out
 *.o
-*.a
-*.dll
-*.pdb
-*.ilk
-*.log
-.cache/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# OS junk
+.DS_Store
+Thumbs.db
