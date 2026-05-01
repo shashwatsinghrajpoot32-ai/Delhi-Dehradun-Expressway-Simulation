@@ -4,6 +4,7 @@
 #include "httplib.h"
 
 #include <cctype>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <queue>
@@ -293,10 +294,19 @@ int main() {
     setJson(res, oss.str());
   });
 
-  std::cout << "Frontend running at http://localhost:8080\n";
+  int port = 8080;
+  if (const char* p = std::getenv("PORT")) {
+    try {
+      port = std::stoi(p);
+    } catch (...) {
+      port = 8080;
+    }
+  }
+
+  std::cout << "Server running on port " << port << "\n";
   std::cout << "Press Ctrl+C to stop.\n";
-  if (!svr.listen("127.0.0.1", 8080)) {
-    std::cerr << "Failed to start server on port 8080.\n";
+  if (!svr.listen("0.0.0.0", port)) {
+    std::cerr << "Failed to start server on port " << port << ".\n";
     return 1;
   }
   return 0;
