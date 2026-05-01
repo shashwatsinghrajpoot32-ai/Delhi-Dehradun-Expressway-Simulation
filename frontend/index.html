@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Delhi–Dehradun Expressway Simulator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <div>
+          <h1>Delhi–Dehradun Expressway Simulation</h1>
+          <p class="sub">Graph + Dijkstra + Bellman‑Ford + Kruskal + Fenwick + Bloom Filter + Top‑K</p>
+        </div>
+        <div class="pill" id="statusPill">Connecting…</div>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Shortest Path (Dijkstra)</h2>
+          <div class="row">
+            <label>Metric</label>
+            <select id="metric">
+              <option value="distance">Distance</option>
+              <option value="time">Time</option>
+              <option value="toll">Toll</option>
+            </select>
+          </div>
+          <div class="row">
+            <label>Source</label>
+            <select id="src"></select>
+          </div>
+          <div class="row">
+            <label>Destination</label>
+            <select id="dst"></select>
+          </div>
+          <button id="btnDijkstra">Compute</button>
+          <pre class="out" id="outDijkstra"></pre>
+        </div>
+
+        <div class="card">
+          <h2>Minimum Spanning Tree (Kruskal)</h2>
+          <div class="row">
+            <label>Metric</label>
+            <select id="mstMetric">
+              <option value="distance">Distance</option>
+              <option value="time">Time</option>
+              <option value="toll">Toll</option>
+            </select>
+          </div>
+          <button id="btnMst">Show MST</button>
+          <pre class="out" id="outMst"></pre>
+        </div>
+
+        <div class="card">
+          <h2>Toll Management (Fenwick)</h2>
+          <div class="row">
+            <label>Range (edge ids)</label>
+            <div class="split">
+              <input id="rangeL" type="number" value="0" min="0" />
+              <input id="rangeR" type="number" value="4" min="0" />
+            </div>
+          </div>
+          <button id="btnRange">Query Range Sum</button>
+          <div class="row">
+            <label>Update toll</label>
+            <div class="split">
+              <input id="updId" type="number" value="0" min="0" />
+              <input id="updToll" type="number" value="60" min="0" />
+            </div>
+          </div>
+          <button id="btnUpdate">Update</button>
+          <pre class="out" id="outToll"></pre>
+        </div>
+
+        <div class="card">
+          <h2>Bloom Filter (Vehicle Pass)</h2>
+          <div class="row">
+            <label>Vehicle id</label>
+            <input id="vehId" placeholder="DL01AB1234" />
+          </div>
+          <button id="btnBloom">Check + Record</button>
+          <pre class="out" id="outBloom"></pre>
+        </div>
+
+        <div class="card">
+          <h2>Top‑K Toll Roads</h2>
+          <div class="row">
+            <label>K</label>
+            <input id="topK" type="number" value="3" min="1" />
+          </div>
+          <button id="btnTopK">Compute</button>
+          <pre class="out" id="outTopK"></pre>
+        </div>
+
+        <div class="card">
+          <h2>Negative Cycle (Bellman‑Ford)</h2>
+          <p class="hint">
+            Simulates “fuel arbitrage”: weight = toll − fuelSavings. If fuelSavings is large, edges become negative.
+          </p>
+          <div class="row">
+            <label>Fuel savings per road</label>
+            <input id="fuelSavings" type="number" value="50" />
+          </div>
+          <button id="btnBellman">Detect</button>
+          <pre class="out" id="outBellman"></pre>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>Backend: local C++ server on <code>localhost:8080</code></div>
+        <div class="muted">Tip: keep <code>expressway.txt</code> next to the server executable.</div>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+
